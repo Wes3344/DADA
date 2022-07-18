@@ -1,0 +1,19 @@
+##CAPÍTULO 2: EXPERIMENTOS SIMPLES COMPARATIVOS###
+#Agregar esta línea. Creada por usuario unalmdei
+####Editando la segunda línea
+# cargando paquetes y datos:
+# Ejemplo:
+library(Sleuth2) #Contiene datos y ejemplos
+library(mosaic) #Contiene datos y conjunto de utilidades elaborados para la enseñanza
+datos<-case0101 
+summary(datos)
+histogram(~Score | Treatment, data = datos)
+plot(Score ~ Treatment, data = datos)
+favstats(Score ~ Treatment, data = datos)
+t.test(Score ~ Treatment, alternative = "two.sided", var.equal = TRUE, data = datos)
+summary(lm(Score ~ Treatment, data = datos))
+anova(lm(Score ~ Treatment, data = datos))
+residuos<- residuals.lm(lm(Score ~ Treatment, data = datos))
+datos<-c(datos,as.data.frame(residuos))
+shapiro.test(residuos)
+bartlett.test(residuos~Treatment,datos)
